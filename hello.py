@@ -3,6 +3,7 @@ def wsgi_application(environ, start_response):
     headers = [
         ('Content-Type', 'text/plain'),
     ]
-    body = bytes('\n'.join(environ['QUERY_STRING'].split('&')), encoding='utf8')
+    data = environ['QUERY_STRING'].split('&')
+    body = '\n'.join(data).encode('utf-8')
     start_response(status, headers)
     return [body]
